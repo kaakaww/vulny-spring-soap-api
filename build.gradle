@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+mainClassName = 'com.example.SpringBootSoapExampleApplication'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile(
+        'org.springframework.boot:spring-boot-starter',
+        'org.springframework.boot:spring-boot-starter-web-services',
+        'wsdl4j:wsdl4j:1.6.3'
+    )
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
