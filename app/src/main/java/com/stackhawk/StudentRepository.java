@@ -1,6 +1,6 @@
-package com.example;
+package com.stackhawk;
 
-import com.example.school.Student;
+import com.stackhawk.school.Student;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;

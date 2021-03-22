@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "https://www.stackhawk.com/xml/vulnysoap", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.example.school;
+package com.stackhawk.school;

@@ -16,7 +16,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.example'
+group = 'com.stackhawk'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 

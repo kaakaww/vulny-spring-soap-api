@@ -6,7 +6,7 @@
 //
 
 
-package com.example.school;
+package com.stackhawk.school;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -1,4 +1,4 @@
-package com.example;
+package com.stackhawk;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
