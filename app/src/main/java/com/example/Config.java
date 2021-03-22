@@ -31,7 +31,7 @@ public class Config extends WsConfigurerAdapter
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("StudentDetailsPort");
         wsdl11Definition.setLocationUri("/service/student-details");
-        wsdl11Definition.setTargetNamespace("https://www.howtodoinjava.com/xml/school");
+        wsdl11Definition.setTargetNamespace("https://www.stackhawk.com/xml/vulnysoap");
         wsdl11Definition.setSchema(countriesSchema);
         return wsdl11Definition;
     }

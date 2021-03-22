@@ -11,7 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class StudentEndpoint
 {
-    private static final String NAMESPACE_URI = "https://www.howtodoinjava.com/xml/school";
+    private static final String NAMESPACE_URI = "https://www.stackhawk.com/xml/vulnysoap";
 
     private StudentRepository StudentRepository;
 

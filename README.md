@@ -16,7 +16,7 @@ View the WDSL at http://localhost:8080/service/studentDetailsWsdl.wsdl and post 
 
 Example request (with header "Content-Type:text/xml"):
 ```
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="https://www.howtodoinjava.com/xml/school">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="https://www.stackhawk.com/xml/vulnysoap">
    <soapenv:Header/>
    <soapenv:Body>
       <sch:StudentDetailsRequest>
