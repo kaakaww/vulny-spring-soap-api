@@ -17,6 +17,14 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="StudentSearchRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="Student">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>

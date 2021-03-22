@@ -70,10 +70,13 @@ bootJar {
 
 // tag::dependencies[]
 dependencies {
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'wsdl4j:wsdl4j'
     jaxb("org.glassfish.jaxb:jaxb-xjc")
+    compile("com.h2database:h2")
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 // end::dependencies[]

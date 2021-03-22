@@ -15,27 +15,27 @@ public class StudentRepository {
     public void initData() {
 
         Student student = new Student();
-        student.setName("Sajal");
+        student.setName("Terrence");
         student.setStandard(5);
-        student.setAddress("Pune");
+        student.setAddress("Los Angeles, CA");
         students.put(student.getName(), student);
 
         student = new Student();
-        student.setName("Kajal");
+        student.setName("Jim");
         student.setStandard(5);
-        student.setAddress("Chicago");
+        student.setAddress("Miami, FL");
         students.put(student.getName(), student);
 
         student = new Student();
-        student.setName("Lokesh");
+        student.setName("Aldous");
         student.setStandard(6);
-        student.setAddress("Delhi");
+        student.setAddress("Manchester, G.B.");
         students.put(student.getName(), student);
 
         student = new Student();
-        student.setName("Sukesh");
+        student.setName("Ronald");
         student.setStandard(7);
-        student.setAddress("Noida");
+        student.setAddress("Sioux Falls, SD");
         students.put(student.getName(), student);
     }
 

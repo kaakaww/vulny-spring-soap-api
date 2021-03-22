@@ -49,6 +49,14 @@ public class Student {
     @XmlElement(required = true)
     protected String address;
 
+    public Student(String name, Long standard, String address) {
+        setName(name);
+        setStandard(standard.intValue());
+        setAddress(address);
+    }
+
+    public Student() {}
+
     /**
      * Gets the value of the name property.
      *
