@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootSoapExampleApplication {
+public class SpringBootVulnySoapApi {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootSoapExampleApplication.class, args);
+		SpringApplication.run(SpringBootVulnySoapApi.class, args);
 	}
 }

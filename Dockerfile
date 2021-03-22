@@ -1,6 +1,6 @@
 FROM gradle:6.8.3-jdk8
-ADD ./ /opt/soap
+ADD ./app /opt/soap
 WORKDIR /opt/soap
-RUN ./gradlew clean build
+RUN gradle build
 EXPOSE 8080
-CMD ["./gradlew bootRun"]
+ENTRYPOINT ["gradle", "bootRun"]
