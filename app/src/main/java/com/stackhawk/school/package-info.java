@@ -5,5 +5,5 @@
 // Generated on: 2018.01.09 at 02:32:19 PM GMT
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "https://www.stackhawk.com/xml/vulnysoap", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://localhost/vulnysoap", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package com.stackhawk.school;

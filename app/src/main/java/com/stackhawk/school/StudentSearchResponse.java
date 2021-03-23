@@ -9,12 +9,13 @@
 package com.stackhawk.school;
 
 import com.stackhawk.school.entity.Student;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 
 /**
  * <p>Java class for anonymous complex type.
@@ -39,11 +40,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "student"
 })
-@XmlRootElement(name = "StudentDetailsResponse")
-public class StudentDetailsResponse {
+@XmlRootElement(name = "StudentSearchResponse")
+public class StudentSearchResponse {
 
     @XmlElement(name = "Student", required = true)
-    protected Student student;
+    protected ArrayList<Student> students;
 
     /**
      * Gets the value of the student property.
@@ -53,8 +54,8 @@ public class StudentDetailsResponse {
      *     {@link Student }
      *
      */
-    public Student getStudent() {
-        return student;
+    public List<Student> getStudents() {
+        return students;
     }
 
     /**
@@ -65,8 +66,13 @@ public class StudentDetailsResponse {
      *     {@link Student }
      *
      */
-    public void setStudent(Student value) {
-        this.student = value;
+    public void addStudent(Student value) {
+        this.students.add(value);
+    }
+
+    public void setStudents(List<Student> value) {
+        this.students.clear();
+        this.students.addAll(value);
     }
 
 }

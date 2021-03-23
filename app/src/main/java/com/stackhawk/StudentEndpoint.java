@@ -1,18 +1,11 @@
 package com.stackhawk;
 
-import com.stackhawk.school.Student;
 import com.stackhawk.school.StudentDetailsRequest;
 import com.stackhawk.school.StudentDetailsResponse;
 import com.stackhawk.school.StudentSearchRequest;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import com.stackhawk.school.StudentSearchResponse;
+import com.stackhawk.school.repos.StudentRepo;
 import javax.persistence.EntityManager;
-import org.hibernate.Session;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
-import org.hibernate.jdbc.ReturningWork;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -22,35 +15,38 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class StudentEndpoint
 {
-    private static final String NAMESPACE_URI = "https://www.stackhawk.com/xml/vulnysoap";
+    private static final String NAMESPACE_URI = "http://localhost/vulnysoap";
 
-    private StudentRepository studentRepository;
-
-    @Autowired
-    public StudentEndpoint(StudentRepository StudentRepository) {
-        this.studentRepository = StudentRepository;
-    }
+    private StudentRepo studentRepo;
 
     @Autowired
     EntityManager entityManager;
+
+    @Autowired
+    public StudentEndpoint(StudentRepo studentRepo) {
+        this.studentRepo = studentRepo;
+    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "StudentDetailsRequest")
     @ResponsePayload
     public StudentDetailsResponse getStudent(@RequestPayload StudentDetailsRequest request) {
         StudentDetailsResponse response = new StudentDetailsResponse();
-        response.setStudent(studentRepository.findStudent(request.getName()));
+        response.setStudent(studentRepo.findStudentByName(request.getName()));
 
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "StudentSearchRequest")
     @ResponsePayload
-    public List<StudentDetailsResponse> searchStudents(@RequestPayload StudentSearchRequest request) {
-        final Session session = (Session) entityManager.unwrap(Session.class);
-        List items = session.doReturningWork(new ReturningWork<List<Student>>() {
+    public StudentSearchResponse searchStudents(@RequestPayload StudentSearchRequest request) {
+        StudentSearchResponse response = new StudentSearchResponse();
+        response.setStudents(studentRepo.findAllByName(request.getName()));
+        return response;
+/*        final Session session = (Session) entityManager.unwrap(Session.class);
+        return session.doReturningWork(new ReturningWork<StudentSearchResponse>() {
             @Override
-            public List<Student> execute(Connection connection) throws SQLException {
-                List<Student> items = new ArrayList<>();
+            public StudentSearchResponse execute(Connection connection) throws SQLException {
+                StudentSearchResponse studentSearchResponse = new StudentSearchResponse();
                 ResultSet rs = connection
                         .createStatement()
                         .executeQuery(
@@ -58,11 +54,10 @@ public class StudentEndpoint
                         );
                 //or description like '%" + search.getSearchText() + "%'
                 while (rs.next()) {
-                    items.add(new Student(rs.getString("name"), rs.getLong("standard"), rs.getString("address")));
+                    studentSearchResponse.addStudent(new Student(rs.getString("name"), rs.getDouble("gpa"), rs.getString("location")));
                 }
-                return items;
+                return studentSearchResponse;
             }
-        });
-        return items;
+        });*/
     }
 }

@@ -6,8 +6,10 @@
 //
 
 
-package com.stackhawk.school;
+package com.stackhawk.school.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="standard" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="gpa" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,21 +39,25 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Student", propOrder = {
-    "name",
-    "standard",
-    "address"
+        "id",
+        "name",
+        "gpa",
+        "address"
 })
+@Entity
 public class Student {
+
 
     @XmlElement(required = true)
     protected String name;
-    protected int standard;
+    protected Double gpa;
     @XmlElement(required = true)
     protected String address;
+    private Long id;
 
-    public Student(String name, Long standard, String address) {
+    public Student(String name, double gpa, String address) {
         setName(name);
-        setStandard(standard.intValue());
+        setGpa(gpa);
         setAddress(address);
     }
 
@@ -82,19 +88,19 @@ public class Student {
     }
 
     /**
-     * Gets the value of the standard property.
+     * Gets the value of the gpa property.
      *
      */
-    public int getStandard() {
-        return standard;
+    public double getGpa() {
+        return gpa;
     }
 
     /**
-     * Sets the value of the standard property.
+     * Sets the value of the gpa property.
      *
      */
-    public void setStandard(int value) {
-        this.standard = value;
+    public void setGpa(double value) {
+        this.gpa = value;
     }
 
     /**
@@ -121,4 +127,12 @@ public class Student {
         this.address = value;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    public Long getId() {
+        return id;
+    }
 }

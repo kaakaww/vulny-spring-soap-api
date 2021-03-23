@@ -55,4 +55,17 @@ public class StudentSearchRequest {
     public String getName() {
         return name;
     }
+
+    /**
+     * Sets the value of the name property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
 }

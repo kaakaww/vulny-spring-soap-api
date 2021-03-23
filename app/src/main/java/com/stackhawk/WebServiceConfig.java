@@ -14,7 +14,7 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
 @Configuration
-public class Config extends WsConfigurerAdapter
+public class WebServiceConfig extends WsConfigurerAdapter
 {
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext)
@@ -22,22 +22,22 @@ public class Config extends WsConfigurerAdapter
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/service/*");
+        return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
-    @Bean(name = "studentDetailsWsdl")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema)
+    @Bean(name = "students")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema)
     {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("StudentDetailsPort");
-        wsdl11Definition.setLocationUri("/service/student-details");
-        wsdl11Definition.setTargetNamespace("https://www.stackhawk.com/xml/vulnysoap");
-        wsdl11Definition.setSchema(countriesSchema);
+        wsdl11Definition.setPortTypeName("StudentsPort");
+        wsdl11Definition.setLocationUri("/ws/students");
+        wsdl11Definition.setTargetNamespace("http://localhost/vulnysoap");
+        wsdl11Definition.setSchema(studentsSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema()
+    public XsdSchema studentsSchema()
     {
         return new SimpleXsdSchema(new ClassPathResource("student.xsd"));
     }
