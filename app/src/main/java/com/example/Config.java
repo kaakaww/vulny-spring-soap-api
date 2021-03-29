@@ -1,4 +1,4 @@
-package com.stackhawk;
+package com.example;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -14,25 +14,25 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
 @Configuration
-public class WebServiceConfig extends WsConfigurerAdapter
+public class Config extends WsConfigurerAdapter
 {
     @Bean
-    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext)
+    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext)
     {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/ws/*");
+        return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
     @Bean(name = "students")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema)
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentSchema)
     {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("StudentsPort");
-        wsdl11Definition.setLocationUri("/ws/students");
-        wsdl11Definition.setTargetNamespace("http://localhost/vulnysoap");
-        wsdl11Definition.setSchema(studentsSchema);
+        wsdl11Definition.setPortTypeName("StudentDetailsPort");
+        wsdl11Definition.setLocationUri("/ws/");
+        wsdl11Definition.setTargetNamespace("http://localhost/xml/school");
+        wsdl11Definition.setSchema(studentSchema);
         return wsdl11Definition;
     }
 

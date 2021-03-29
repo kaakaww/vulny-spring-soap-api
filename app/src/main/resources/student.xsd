@@ -1,5 +1,5 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://localhost/vulnysoap"
-           targetNamespace="http://localhost/vulnysoap" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://localhost/xml/school"
+           targetNamespace="http://localhost/xml/school" elementFormDefault="qualified">
 
     <xs:element name="StudentDetailsRequest">
         <xs:complexType>
@@ -21,6 +21,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
+                <xs:element name="address" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -36,7 +37,7 @@
     <xs:complexType name="Student">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="gpa" type="xs:int"/>
+            <xs:element name="gpa" type="xs:double"/>
             <xs:element name="address" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>

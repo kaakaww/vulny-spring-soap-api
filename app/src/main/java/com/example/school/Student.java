@@ -6,7 +6,7 @@
 //
 
 
-package com.stackhawk.school.entity;
+package com.example.school;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-
 
 /**
  * <p>Java class for Student complex type.
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="gpa" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="standard" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -39,29 +38,32 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Student", propOrder = {
-        "id",
-        "name",
-        "gpa",
-        "address"
+    "id",
+    "name",
+    "gpa",
+    "address"
 })
 @Entity
 public class Student {
 
-
     @XmlElement(required = true)
     protected String name;
-    protected Double gpa;
+    protected double gpa;
     @XmlElement(required = true)
     protected String address;
-    private Long id;
+    protected Long id;
 
-    public Student(String name, double gpa, String address) {
-        setName(name);
-        setGpa(gpa);
-        setAddress(address);
+    public Student() {
+        super();
     }
 
-    public Student() {}
+    public Student(Long id, String name, String address) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
 
     /**
      * Gets the value of the name property.
@@ -134,5 +136,10 @@ public class Student {
     @Id
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Student [id=%s, name=%s, address=%s]", id, name, address);
     }
 }
