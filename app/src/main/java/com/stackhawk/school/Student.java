@@ -6,7 +6,7 @@
 //
 
 
-package com.example.school;
+package com.stackhawk.school;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

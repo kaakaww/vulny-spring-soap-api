@@ -1,16 +1,16 @@
-package com.example.in28minutes.soap.webservices.soapcoursemanagement.soap;
+package com.stackhawk.vuln.soap.example;
 
-import com.in28minutes.courses.CourseDetails;
-import com.in28minutes.courses.DeleteCourseDetailsRequest;
-import com.in28minutes.courses.DeleteCourseDetailsResponse;
-import com.in28minutes.courses.GetAllCourseDetailsRequest;
-import com.in28minutes.courses.GetAllCourseDetailsResponse;
-import com.in28minutes.courses.GetCourseDetailsRequest;
-import com.in28minutes.courses.GetCourseDetailsResponse;
-import com.in28minutes.soap.webservices.soapcoursemanagement.soap.bean.Course;
-import com.in28minutes.soap.webservices.soapcoursemanagement.soap.exception.CourseNotFoundException;
-import com.in28minutes.soap.webservices.soapcoursemanagement.soap.service.CourseDetailsService;
-import com.in28minutes.soap.webservices.soapcoursemanagement.soap.service.CourseDetailsService.Status;
+import com.stackhawk.courses.CourseDetails;
+import com.stackhawk.courses.DeleteCourseDetailsRequest;
+import com.stackhawk.courses.DeleteCourseDetailsResponse;
+import com.stackhawk.courses.GetAllCourseDetailsRequest;
+import com.stackhawk.courses.GetAllCourseDetailsResponse;
+import com.stackhawk.courses.GetCourseDetailsRequest;
+import com.stackhawk.courses.GetCourseDetailsResponse;
+import com.stackhawk.vuln.soap.example.bean.Course;
+import com.stackhawk.vuln.soap.example.exception.CourseNotFoundException;
+import com.stackhawk.vuln.soap.example.service.CourseDetailsService;
+import com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -28,9 +28,9 @@ public class CourseDetailsEndpoint {
 	// input - GetCourseDetailsRequest
 	// output - GetCourseDetailsResponse
 
-	// http://in28minutes.com/courses
+	// http://stackhawk.com/courses
 	// GetCourseDetailsRequest
-	@PayloadRoot(namespace = "http://in28minutes.com/courses", localPart = "GetCourseDetailsRequest")
+	@PayloadRoot(namespace = "http://stackhawk.com/courses", localPart = "GetCourseDetailsRequest")
 	@ResponsePayload
 	public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
 
@@ -68,7 +68,7 @@ public class CourseDetailsEndpoint {
 		return courseDetails;
 	}
 
-	@PayloadRoot(namespace = "http://in28minutes.com/courses", localPart = "GetAllCourseDetailsRequest")
+	@PayloadRoot(namespace = "http://stackhawk.com/courses", localPart = "GetAllCourseDetailsRequest")
 	@ResponsePayload
 	public GetAllCourseDetailsResponse processAllCourseDetailsRequest(
 			@RequestPayload GetAllCourseDetailsRequest request) {
@@ -78,7 +78,7 @@ public class CourseDetailsEndpoint {
 		return mapAllCourseDetails(courses);
 	}
 
-	@PayloadRoot(namespace = "http://in28minutes.com/courses", localPart = "DeleteCourseDetailsRequest")
+	@PayloadRoot(namespace = "http://stackhawk.com/courses", localPart = "DeleteCourseDetailsRequest")
 	@ResponsePayload
 	public DeleteCourseDetailsResponse deleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
 
@@ -90,9 +90,9 @@ public class CourseDetailsEndpoint {
 		return response;
 	}
 
-	private com.in28minutes.courses.Status mapStatus(Status status) {
+	private com.stackhawk.courses.Status mapStatus(Status status) {
 		if (status == Status.FAILURE)
-			return com.in28minutes.courses.Status.FAILURE;
-		return com.in28minutes.courses.Status.SUCCESS;
+			return com.stackhawk.courses.Status.FAILURE;
+		return com.stackhawk.courses.Status.SUCCESS;
 	}
 }

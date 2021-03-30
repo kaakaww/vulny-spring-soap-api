@@ -1,4 +1,4 @@
-package com.example.in28minutes.soap.webservices.soapcoursemanagement.soap.bean;
+package com.stackhawk.vuln.soap.example.bean;
 
 public class Course {
 	private int id;

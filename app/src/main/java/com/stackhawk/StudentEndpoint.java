@@ -1,15 +1,13 @@
-package com.example;
+package com.stackhawk;
 
-import com.example.school.StudentSearchRequest;
-import com.example.school.StudentSearchResponse;
 import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import com.example.school.StudentDetailsRequest;
-import com.example.school.StudentDetailsResponse;
+import com.stackhawk.school.StudentDetailsRequest;
+import com.stackhawk.school.StudentDetailsResponse;
 
 @Endpoint
 public class StudentEndpoint

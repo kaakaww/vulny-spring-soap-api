@@ -1,4 +1,4 @@
-package com.example.in28minutes.soap.webservices.soapcoursemanagement.soap;
+package com.stackhawk.vuln.soap.example;
 
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +40,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema coursesSchema) {
 		DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
 		definition.setPortTypeName("CoursePort");
-		definition.setTargetNamespace("http://in28minutes.com/courses");
+		definition.setTargetNamespace("http://stackhawk.com/courses");
 		definition.setLocationUri("/ws");
 		definition.setSchema(coursesSchema);
 		return definition;

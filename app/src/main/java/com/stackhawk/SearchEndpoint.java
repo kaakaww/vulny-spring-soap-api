@@ -1,7 +1,7 @@
-package com.example;
+package com.stackhawk;
 
-import com.example.school.StudentSearchRequest;
-import com.example.school.StudentSearchResponse;
+import com.stackhawk.school.StudentSearchRequest;
+import com.stackhawk.school.StudentSearchResponse;
 import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;

@@ -1,10 +1,11 @@
-package com.example.in28minutes.soap.webservices.soapcoursemanagement.soap.service;
+package com.stackhawk.vuln.soap.example.service;
 
-import com.in28minutes.soap.webservices.soapcoursemanagement.soap.bean.Course;
+import com.stackhawk.vuln.soap.example.bean.Course;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status;
 
 @Component
 public class CourseDetailsService {
@@ -43,16 +44,16 @@ public class CourseDetailsService {
 		return courses;
 	}
 
-	public Status deleteById(int id) {
+	public com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status deleteById(int id) {
 		Iterator<Course> iterator = courses.iterator();
 		while (iterator.hasNext()) {
 			Course course = iterator.next();
 			if (course.getId() == id) {
 				iterator.remove();
-				return Status.SUCCESS;
+				return com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status.SUCCESS;
 			}
 		}
-		return Status.FAILURE;
+		return com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status.FAILURE;
 	}
 
 	// updating course & new course
