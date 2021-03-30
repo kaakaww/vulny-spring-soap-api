@@ -7,16 +7,22 @@ plugins {
     id("org.springframework.boot") version "2.4.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.intershop.gradle.jaxb") version "4.3.0"
+    id("application")
     kotlin("jvm") version "1.4.10"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin")
+    }
 }
 
 tasks.bootJar {
     archiveFileName.set("vulny-soap.jar")
     setClasspath("com.stackhawk.vuln.soap")
-}
-
-tasks.named<BootRun>("bootRun") {
-    main = "com.stackhawk.vuln.soap.SoapCourseManagementApplication"
 }
 
 allprojects {
@@ -29,19 +35,19 @@ allprojects {
     }
 
     dependencies {
-        compileOnly("org.springframework.boot:spring-boot-devtools")
-        compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
-        compileOnly("org.springframework.boot:spring-boot-starter-web-services")
-        compileOnly("org.springframework.boot:spring-boot-devtools")
-        compileOnly("wsdl4j:wsdl4j")
-        compileOnly("org.springframework.ws:spring-ws-security") {
+        implementation("wsdl4j:wsdl4j")
+        implementation("org.springframework.ws:spring-ws-security") {
             exclude("org.springframework.security", "spring-security-core")
         }
-        compileOnly("com.sun.xml.wss:xws-security:3.0") {
+        implementation("com.sun.xml.wss:xws-security:3.0") {
             exclude("javax.xml.crypto", "xmldsig")
         }
-        compileOnly("javax.activation:activation:1.1.1")
-        compileOnly("com.h2database:h2")
+        implementation("javax.activation:activation:1.1.1")
+        implementation("com.h2database:h2")
+        implementation("org.springframework.boot:spring-boot-devtools")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-web-services")
+        implementation("org.springframework.boot:spring-boot-devtools")
         implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.3")
         implementation("org.springframework.boot:spring-boot-starter-web")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -68,7 +74,7 @@ jaxb {
         //generates java code for project from project schema
         register("vuln-soap") {
             inputDir = file("src/main/java")
-            outputDir = file("com/stackhawk/annotated/**/binding/**/*.java")
+            include("com/stackhawk/annotated/**/binding/**/*.java")
             namespaceconfigs = mapOf("http://stackhawk.com/courses" to "feature.xsd")
         }
     }

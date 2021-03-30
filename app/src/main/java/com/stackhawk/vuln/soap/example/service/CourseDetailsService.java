@@ -1,14 +1,23 @@
 package com.stackhawk.vuln.soap.example.service;
 
 import com.stackhawk.vuln.soap.example.bean.Course;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import org.hibernate.Session;
+import org.hibernate.jdbc.ReturningWork;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status;
 
 @Component
 public class CourseDetailsService {
+
+	@Autowired
+	EntityManager entityManager;
 
 	public enum Status {
 		SUCCESS, FAILURE;
@@ -32,16 +41,39 @@ public class CourseDetailsService {
 
 	// course - 1
 	public Course findById(int id) {
-		for (Course course : courses) {
-			if (course.getId() == id)
-				return course;
-		}
-		return null;
+		final Session session = (Session) entityManager.unwrap(Session.class);
+		return session.doReturningWork(new ReturningWork<Course>() {
+			@Override
+			public Course execute(Connection connection) throws SQLException {
+				for (Course course1 : courses) {
+					if (course1.getId() == id)
+						return course1;
+				}
+				return null;
+			}
+		});
 	}
 
 	// courses
 	public List<Course> findAll() {
-		return courses;
+		final Session session = (Session) entityManager.unwrap(Session.class);
+		List items = session.doReturningWork(new ReturningWork<List<Course>>() {
+			@Override
+			public List<Course> execute(Connection connection) throws SQLException {
+				List<Course> items = new ArrayList<>();
+				ResultSet rs = connection
+						.createStatement()
+						.executeQuery(
+								"SELECT * FROM course"
+						);
+				//or description like '%" + search.getSearchText() + "%'
+				while (rs.next()) {
+					items.add(new Course(rs.getInt("id"), rs.getString("name"), rs.getString("description")));
+				}
+				return items;
+			}
+		});
+		return items;
 	}
 
 	public com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status deleteById(int id) {

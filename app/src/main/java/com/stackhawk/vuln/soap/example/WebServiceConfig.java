@@ -35,7 +35,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 	}
 
 	// /ws/courses.wsdl
-	// course-details.xsd
+	// vuln-soap.xsd
 	@Bean(name = "courses")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema coursesSchema) {
 		DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
@@ -48,7 +48,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 
 	@Bean
 	public XsdSchema coursesSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("course-details.xsd"));
+		return new SimpleXsdSchema(new ClassPathResource("vuln-soap.xsd"));
 	}
 
 

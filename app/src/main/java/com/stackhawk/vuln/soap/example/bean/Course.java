@@ -1,9 +1,26 @@
 package com.stackhawk.vuln.soap.example.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Course", propOrder = {
+		"id",
+		"address",
+		"description"
+})
+@Entity
 public class Course {
+	@GeneratedValue
 	private int id;
 	private String name;
 	private String description;
+
 
 	public Course(int id, String name, String description) {
 		super();
@@ -12,6 +29,9 @@ public class Course {
 		this.description = description;
 	}
 
+	public Course() { }
+
+	@Id
 	public int getId() {
 		return id;
 	}
