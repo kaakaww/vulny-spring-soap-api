@@ -9,4 +9,4 @@ app:
   # The names of your session tokens aka: cookie names
   autoPolicy: true
   soapConf:
-    path: '/service/studentDetailsWsdl.wsdl'
+    path: '/ws/courses.wsdl'
