@@ -1,4 +1,4 @@
-package com.stackhawk.vuln.soap.example.bean;
+package com.stackhawk.vuln.soap.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Course", propOrder = {

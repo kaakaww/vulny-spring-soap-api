@@ -8,6 +8,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.intershop.gradle.jaxb") version "4.3.0"
     id("application")
+    id("distribution")
     kotlin("jvm") version "1.4.10"
 }
 
@@ -21,7 +22,7 @@ buildscript {
 }
 
 tasks.bootJar {
-    archiveFileName.set("vulny-soap.jar")
+    archiveFileName.set("vulnsoap.jar")
     setClasspath("com.stackhawk.vuln.soap")
 }
 
@@ -59,23 +60,22 @@ allprojects {
     }
 }
 
-
 jaxb {
     // generate java code from schema
     javaGen {
         //generates a 'project' schema file from existing java code
-        register("vuln-soap") {
-            schema = file("src/main/resources/vuln-soap.xsd")
+        register("vulnsoap") {
+            schema = file("src/main/resources/vulnsoap.xsd")
         }
     }
 
     //generates schema from java code
     schemaGen {
         //generates java code for project from project schema
-        register("vuln-soap") {
+        register("vulnsoap") {
             inputDir = file("src/main/java")
-            include("com/stackhawk/annotated/**/binding/**/*.java")
-            namespaceconfigs = mapOf("http://stackhawk.com/courses" to "feature.xsd")
+            include("db/vulny.db")
+            namespaceconfigs = mapOf("http://stackhawk.com/vulnsoap" to "feature.xsd")
         }
     }
 }

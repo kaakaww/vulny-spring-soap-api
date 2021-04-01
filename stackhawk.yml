@@ -9,4 +9,4 @@ app:
   # The names of your session tokens aka: cookie names
   autoPolicy: true
   soapConf:
-    path: '/ws/courses.wsdl'
+    path: '/ws/vulnsoap.wsdl'

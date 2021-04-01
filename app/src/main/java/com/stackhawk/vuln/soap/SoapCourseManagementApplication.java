@@ -1,6 +1,6 @@
 package com.stackhawk.vuln.soap;
 
-import com.stackhawk.vuln.soap.example.bean.Course;
+import com.stackhawk.vuln.soap.bean.Course;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -12,13 +12,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SoapCourseManagementApplication {
 
-
-	@Value("${spring.datasource.url}")
-	private String dbUrl;
-
 	public static void main(String[] args) {
 		SpringApplication.run(SoapCourseManagementApplication.class, args);
 	}
+
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
 
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx, CourseRepository repo) {

@@ -1,4 +1,4 @@
-package com.stackhawk.vuln.soap.example;
+package com.stackhawk.vuln.soap;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,13 +34,12 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 		return new ServletRegistrationBean(messageDispatcherServlet, "/ws/*");
 	}
 
-	// /ws/courses.wsdl
-	// vuln-soap.xsd
-	@Bean(name = "courses")
+	// vulnsoap.xsd
+	@Bean(name = "vulnsoap")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema coursesSchema) {
 		DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
 		definition.setPortTypeName("CoursePort");
-		definition.setTargetNamespace("http://stackhawk.com/courses");
+		definition.setTargetNamespace("http://stackhawk.com/vulnsoap");
 		definition.setLocationUri("/ws");
 		definition.setSchema(coursesSchema);
 		return definition;
@@ -48,12 +47,12 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 
 	@Bean
 	public XsdSchema coursesSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("vuln-soap.xsd"));
+		return new SimpleXsdSchema(new ClassPathResource("vulnsoap.xsd"));
 	}
 
 
 	//XwsSecurityInterceptor
-	@Bean
+	// @Bean
 	public XwsSecurityInterceptor securityInterceptor(){
 		XwsSecurityInterceptor securityInterceptor = new XwsSecurityInterceptor();
 		//Callback Handler -> SimplePasswordValidationCallbackHandler
@@ -63,7 +62,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 		return securityInterceptor;
 	}
 
-	@Bean
+	// @Bean
 	public SimplePasswordValidationCallbackHandler callbackHandler() {
 		SimplePasswordValidationCallbackHandler handler = new SimplePasswordValidationCallbackHandler();
 		handler.setUsersMap(Collections.singletonMap("user", "password"));
@@ -71,7 +70,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 	}
 
 	//Interceptors.add -> XwsSecurityInterceptor
-	@Override
+	// @Override
 	public void addInterceptors(List<EndpointInterceptor> interceptors) {
 		interceptors.add(securityInterceptor());
 	}

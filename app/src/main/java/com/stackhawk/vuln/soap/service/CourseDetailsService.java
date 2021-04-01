@@ -1,6 +1,6 @@
-package com.stackhawk.vuln.soap.example.service;
+package com.stackhawk.vuln.soap.service;
 
-import com.stackhawk.vuln.soap.example.bean.Course;
+import com.stackhawk.vuln.soap.bean.Course;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,16 +76,16 @@ public class CourseDetailsService {
 		return items;
 	}
 
-	public com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status deleteById(int id) {
+	public com.stackhawk.vuln.soap.service.CourseDetailsService.Status deleteById(int id) {
 		Iterator<Course> iterator = courses.iterator();
 		while (iterator.hasNext()) {
 			Course course = iterator.next();
 			if (course.getId() == id) {
 				iterator.remove();
-				return com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status.SUCCESS;
+				return com.stackhawk.vuln.soap.service.CourseDetailsService.Status.SUCCESS;
 			}
 		}
-		return com.stackhawk.vuln.soap.example.service.CourseDetailsService.Status.FAILURE;
+		return com.stackhawk.vuln.soap.service.CourseDetailsService.Status.FAILURE;
 	}
 
 	// updating course & new course
