@@ -71,12 +71,12 @@ public class SoapCourseManagementApplication {
 					boolean rs1 = connection
 							.createStatement()
 							.execute(
-									"INSERT INTO user VALUES(null, 'user1', 'password', 'Henry', 'admin')"
+									"INSERT INTO user VALUES(0, 'user1', 'password', 'Henry', 'admin')"
 							);
 					boolean rs2 = connection
 							.createStatement()
 							.execute(
-									"INSERT INTO user VALUES(null, 'user2', 'password', 'Alfred', 'basic user')"
+									"INSERT INTO user VALUES(1, 'user2', 'password', 'Alfred', 'basic user')"
 							);
 					return Status.SUCCESS;
 				}
