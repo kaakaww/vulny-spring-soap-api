@@ -29,12 +29,12 @@ public class CourseDetailsEndpoint {
 	// input - GetCourseDetailsRequest
 	// output - GetCourseDetailsResponse
 
-	// http://stackhawk.com/vulnsoap
+	// http://www.stackhawk.com/vulnsoap
 	// GetCourseDetailsRequest
-	@PayloadRoot(namespace = "http://stackhawk.com/vulnsoap", localPart = "GetCourseDetailsRequest")
+	@PayloadRoot(namespace = "http://www.stackhawk.com/vulnsoap", localPart = "GetCourseDetailsRequest")
 	@ResponsePayload
 	public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
-
+		System.out.println("Getting course " + request.getId());
 		Course course = service.findById(request.getId());
 
 		if (course == null)
@@ -69,17 +69,17 @@ public class CourseDetailsEndpoint {
 		return courseDetails;
 	}
 
-	@PayloadRoot(namespace = "http://stackhawk.com/vulnsoap", localPart = "GetAllCourseDetailsRequest")
+	@PayloadRoot(namespace = "http://www.stackhawk.com/vulnsoap", localPart = "GetAllCourseDetailsRequest")
 	@ResponsePayload
 	public GetAllCourseDetailsResponse processAllCourseDetailsRequest(
 			@RequestPayload GetAllCourseDetailsRequest request) {
-
+		System.out.println("Getting all courses...");
 		List<Course> courses = service.findAll();
 
 		return mapAllCourseDetails(courses);
 	}
 
-	@PayloadRoot(namespace = "http://stackhawk.com/vulnsoap", localPart = "DeleteCourseDetailsRequest")
+	@PayloadRoot(namespace = "http://www.stackhawk.com/vulnsoap", localPart = "DeleteCourseDetailsRequest")
 	@ResponsePayload
 	public DeleteCourseDetailsResponse deleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
 

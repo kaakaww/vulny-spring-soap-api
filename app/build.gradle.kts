@@ -75,7 +75,7 @@ jaxb {
         register("vulnsoap") {
             inputDir = file("src/main/java")
             include("db/vulny.db")
-            namespaceconfigs = mapOf("http://stackhawk.com/vulnsoap" to "feature.xsd")
+            namespaceconfigs = mapOf("http://www.stackhawk.com/vulnsoap" to "feature.xsd")
         }
     }
 }

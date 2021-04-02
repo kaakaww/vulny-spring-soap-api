@@ -39,7 +39,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema coursesSchema) {
 		DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
 		definition.setPortTypeName("CoursePort");
-		definition.setTargetNamespace("http://stackhawk.com/vulnsoap");
+		definition.setTargetNamespace("http://www.stackhawk.com/vulnsoap");
 		definition.setLocationUri("/ws");
 		definition.setSchema(coursesSchema);
 		return definition;
@@ -51,6 +51,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 	}
 
 
+/*
 	//XwsSecurityInterceptor
 	// @Bean
 	public XwsSecurityInterceptor securityInterceptor(){
@@ -74,5 +75,6 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 	public void addInterceptors(List<EndpointInterceptor> interceptors) {
 		interceptors.add(securityInterceptor());
 	}
+*/
 
 }

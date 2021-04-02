@@ -1,7 +1,21 @@
 package com.stackhawk.vuln.soap;
 
 import com.stackhawk.vuln.soap.bean.Course;
+import com.stackhawk.vuln.soap.bean.User;
+import com.stackhawk.vuln.soap.repo.CourseRepository;
+
+import com.stackhawk.vuln.soap.service.CourseDetailsService;
+import com.stackhawk.vulnsoap.Status;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import javax.persistence.EntityManager;
+import org.hibernate.Session;
+import org.hibernate.jdbc.ReturningWork;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +32,9 @@ public class SoapCourseManagementApplication {
 
 	@Value("${spring.datasource.url}")
 	private String dbUrl;
+
+	@Autowired
+	EntityManager entityManager;
 
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx, CourseRepository repo) {
@@ -46,6 +63,24 @@ public class SoapCourseManagementApplication {
 				System.out.println(String.format("Items in DB %d", repo.count()));
 				repo.findAll().forEach(item -> System.out.println(String.format("item: %s", item.toString())));
 			}
+
+			final Session session = (Session) entityManager.unwrap(Session.class);
+			session.doReturningWork(new ReturningWork<Status>() {
+				@Override
+				public Status execute(Connection connection) throws SQLException {
+					boolean rs1 = connection
+							.createStatement()
+							.execute(
+									"INSERT INTO user VALUES(null, 'user1', 'password', 'Henry', 'admin')"
+							);
+					boolean rs2 = connection
+							.createStatement()
+							.execute(
+									"INSERT INTO user VALUES(null, 'user2', 'password', 'Alfred', 'basic user')"
+							);
+					return Status.SUCCESS;
+				}
+			});
 
 		};
 	}

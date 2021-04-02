@@ -1,4 +1,4 @@
-package com.stackhawk.vuln.soap;
+package com.stackhawk.vuln.soap.repo;
 
 import com.stackhawk.vuln.soap.bean.Course;
 import org.springframework.data.repository.CrudRepository;

@@ -12,11 +12,11 @@ Requires:
 ./gradlew run
 ```
 
-View the WDSL at http://localhost:8080/service/studentDetailsWsdl.wsdl and post requests to http://localhost:8080/service/student-details.
+View the WDSL at http://localhost:9000/ws/vulnsoap.wsdl and post requests to http://localhost:9000/ws.
 
 Example request (with header "Content-Type:text/xml"):
 ```
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="https://www.stackhawk.com/xml/vulnysoap">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="https://www.stackhawk.com/vulnsoap">
    <soapenv:Header/>
    <soapenv:Body>
       <sch:StudentDetailsRequest>
