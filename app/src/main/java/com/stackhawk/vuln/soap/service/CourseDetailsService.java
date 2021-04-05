@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.hibernate.Session;
@@ -24,20 +23,23 @@ public class CourseDetailsService {
 	}
 
 	// course - 1
-	public Course findById(int id) {
-		System.out.println("searching for cours " + id);
+	public List<Course> findByName(String name) {
+		System.out.println("searching for course " + name);
 		final Session session = (Session) entityManager.unwrap(Session.class);
-		return session.doReturningWork(new ReturningWork<Course>() {
+		return session.doReturningWork(new ReturningWork<List<Course>>() {
 			@Override
-			public Course execute(Connection connection) throws SQLException {
+			public List<Course> execute(Connection connection) throws SQLException {
+				List<Course> items = new ArrayList<>();
 				ResultSet rs = connection
 						.createStatement()
 						.executeQuery(
-								"SELECT * FROM course WHERE id = " + id
+								"SELECT * FROM course WHERE name = '" + name + "'"
 						);
-				if (rs.next())
-					return new Course(rs.getInt("id"), rs.getString("name"), rs.getString("description"));
-				return null;
+				while (rs.next()) {
+					System.out.println("Found record " + rs.getString("name"));
+					items.add(new Course(rs.getInt("id"), rs.getString("name"), rs.getString("description")));
+				}
+				return items;
 			}
 		});
 	}

@@ -9,12 +9,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Course", propOrder = {
+@XmlType(name = "User", propOrder = {
         "id",
         "username",
-        "password",
-        "name",
-        "description"
+        "password"
 })
 @Entity
 public class User {
@@ -22,17 +20,12 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String name;
-    private String description;
 
-
-    public User(int id, String username, String password, String name, String description) {
+    public User(int id, String username, String password) {
         super();
         this.id = id;
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.description = description;
     }
 
     public User() { }
@@ -62,25 +55,9 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public String toString() {
-        return String.format("Course [id=%s, username=%s, password=%s]", id, username, password);
+        return String.format("User [id=%s, username=%s, password=%s]", id, username, password);
     }
 
 }

@@ -2,7 +2,6 @@ package com.stackhawk.vuln.soap;
 
 
 import com.stackhawk.vuln.soap.bean.Course;
-import com.stackhawk.vuln.soap.exception.CourseNotFoundException;
 import com.stackhawk.vuln.soap.service.CourseDetailsService;
 import com.stackhawk.vuln.soap.service.CourseDetailsService.Status;
 import com.stackhawk.vulnsoap.CourseDetails;
@@ -34,18 +33,17 @@ public class CourseDetailsEndpoint {
 	@PayloadRoot(namespace = "http://www.stackhawk.com/vulnsoap", localPart = "GetCourseDetailsRequest")
 	@ResponsePayload
 	public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
-		System.out.println("Getting course " + request.getId());
-		Course course = service.findById(request.getId());
-
-		if (course == null)
-			throw new CourseNotFoundException("Invalid Course Id " + request.getId());
-
+		System.out.println("Getting course " + request.getName());
+		List<Course> course = service.findByName(request.getName());
 		return mapCourseDetails(course);
 	}
 
-	private GetCourseDetailsResponse mapCourseDetails(Course course) {
+	private GetCourseDetailsResponse mapCourseDetails(List<Course> courses) {
 		GetCourseDetailsResponse response = new GetCourseDetailsResponse();
-		response.setCourseDetails(mapCourse(course));
+		for (Course course : courses) {
+			CourseDetails mapCourse = mapCourse(course);
+			response.getCourseDetails().add(mapCourse);
+		}
 		return response;
 	}
 

@@ -7,7 +7,7 @@
 	<xs:element name="GetCourseDetailsRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="id" type="xs:int" />
+				<xs:element name="name" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -15,7 +15,9 @@
 	<xs:element name="GetCourseDetailsResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="CourseDetails" type="tns:CourseDetails" />
+				<xs:element name="CourseDetails" type="tns:CourseDetails"
+					maxOccurs="unbounded"
+				/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -62,6 +64,14 @@
 			<xs:element name="id" type="xs:int" />
 			<xs:element name="name" type="xs:string" />
 			<xs:element name="description" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UserDetails">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" />
+			<xs:element name="username" type="xs:string" />
+			<xs:element name="password" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 

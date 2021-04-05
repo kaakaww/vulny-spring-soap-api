@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Course", propOrder = {
 		"id",
-		"address",
+		"name",
 		"description"
 })
 @Entity

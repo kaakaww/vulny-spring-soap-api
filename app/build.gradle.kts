@@ -37,20 +37,21 @@ allprojects {
 
     dependencies {
         implementation("wsdl4j:wsdl4j")
-        implementation("org.springframework.ws:spring-ws-security") {
-            exclude("org.springframework.security", "spring-security-core")
-        }
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-web-services")
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("javax.activation:activation:1.1.1")
+        implementation("com.h2database:h2")
         implementation("com.sun.xml.wss:xws-security:3.0") {
             exclude("javax.xml.crypto", "xmldsig")
         }
-        implementation("javax.activation:activation:1.1.1")
-        implementation("com.h2database:h2")
-        implementation("org.springframework.boot:spring-boot-devtools")
-        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("org.springframework.boot:spring-boot-starter-web-services")
+        implementation("org.springframework.ws:spring-ws-security") {
+            exclude("org.springframework.security", "spring-security-core")
+        }
         implementation("org.springframework.boot:spring-boot-devtools")
         implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.3")
-        implementation("org.springframework.boot:spring-boot-starter-web")
+        compileOnly("org.springframework.boot:spring-boot-starter-thymeleaf")
+        compileOnly("org.thymeleaf.extras:thymeleaf-extras-springsecurity5")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
