@@ -1,25 +1,42 @@
+import org.jetbrains.kotlin.cli.common.getLibraryFromHome
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 group = "com.stackhawk.vuln.soap"
 version = "1.0"
 
 plugins {
+    application
     id("org.springframework.boot") version "2.4.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.intershop.gradle.jaxb") version "4.3.0"
     id("application")
     id("distribution")
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.4.32"
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin")
     }
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    files("${System.getenv()["JAVA_HOME"]}/lib/tools.jar")
+}
+
+apply(plugin = "io.spring.dependency-management")
 
 tasks.bootJar {
     archiveFileName.set("vulnsoap.jar")
@@ -50,15 +67,13 @@ allprojects {
         }
         implementation("org.springframework.boot:spring-boot-devtools")
         implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.3")
-        compileOnly("org.springframework.boot:spring-boot-starter-thymeleaf")
-        compileOnly("org.thymeleaf.extras:thymeleaf-extras-springsecurity5")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
+}
 
 // tag::xsd[]
-    sourceSets["main"].java {
-        srcDir("build/generated-sources/jaxb")
-    }
+sourceSets["main"].java {
+    srcDir("build/generated-sources/jaxb")
 }
 
 jaxb {
