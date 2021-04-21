@@ -12,7 +12,7 @@ Optional:
 
 ```
 cd app/
-./gradlew run
+./gradlew bootRun
 ```
 
 View the WDSL at http://localhost:9000/ws/vulnsoap.wsdl and post requests to http://localhost:9000/ws.
