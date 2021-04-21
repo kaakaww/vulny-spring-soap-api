@@ -68,10 +68,6 @@ allprojects {
         implementation("org.springframework.boot:spring-boot-devtools")
         implementation("org.springframework.boot:spring-boot-gradle-plugin:2.4.3")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
-        constraints {
-            implementation("javax.xml.bind:jaxb-api:2.3.0")
-            implementation("javax.xml.bind:jaxb-xjc:2.0.2")
-        }
     }
 }
 

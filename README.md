@@ -5,9 +5,13 @@ Simple SOAP API using Spring Boot. Based on this [tutorial](https://howtodoinjav
 Requires:
 * Gradle (wrapper in source)
 
+Optional:
+* Docker
+
 ## Run
 
 ```
+cd app/
 ./gradlew run
 ```
 
@@ -41,12 +45,10 @@ Example of a SQL injection request:
 ### Docker
 
 ```
-# build install distribution
-./gradlew installDist
 
 # build image
-docker build -t local/spring-boot-soap-example .
+docker build -t local/vulny-soap .
 
 # run image
-docker run -p 8080:8080 local/spring-boot-soap-example
+docker run --rm --name vuln-soap -ti -p 9000:9000 local/vulny-soap
 ```
