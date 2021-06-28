@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.cli.common.getLibraryFromHome
-import org.springframework.boot.gradle.tasks.run.BootRun
-
 group = "com.stackhawk.vuln.soap"
 version = "1.0"
 
@@ -9,13 +6,6 @@ plugins {
     id("org.springframework.boot") version "2.4.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.intershop.gradle.jaxb") version "4.3.0"
-    id("application")
-    id("distribution")
-    kotlin("jvm") version "1.4.32"
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
 }
 
 buildscript {
@@ -40,7 +30,6 @@ apply(plugin = "io.spring.dependency-management")
 
 tasks.bootJar {
     archiveFileName.set("vulnsoap.jar")
-    setClasspath("com.stackhawk.vuln.soap")
 }
 
 allprojects {
@@ -95,4 +84,3 @@ jaxb {
         }
     }
 }
-
